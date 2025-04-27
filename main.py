@@ -8,8 +8,6 @@ from src.cli import main as cli_main
     nargs=1,
     required=True,
     type=str,
-    help="Company website URL (e.g. 'https://acme.com') or a search term (e.g. 'bitcoin'). "
-         "If a URL is provided, the tool will extract the company name; otherwise, it uses your search term directly."
 )
 @click.option(
     '--num-articles', '-n',

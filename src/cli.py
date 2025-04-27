@@ -19,6 +19,7 @@ from src.summarizer import summarize_articles
 from src.output_utils import write_ranked_articles
 from src.output_utils import safe_filename, get_output_paths, setup_logging
 from src.llm_utils import get_llm_client
+from src.cli_utils import load_and_validate_config
 import requests
 
 
@@ -56,19 +57,27 @@ def main(query, num_articles):
         results_dir = "results"
         os.makedirs(results_dir, exist_ok=True)
         timestamp = datetime.now().strftime("%Y%m%d-%H%M")
-        json_file, csv_file, log_file = get_output_paths(query, timestamp, results_dir)
-        temp_log_file = log_file + ".tmp"
-        setup_logging(log_file, temp_log_file)
+        # Use the brand name (if inferred) for output filenames
+        brand_name_for_files = None
+        if is_url:
+            # Brand name will be set after extraction below
+            brand_name_for_files = None
+        else:
+            brand_name_for_files = query
 
         # --- Step 1: Accept input and extract company/search term ---
         if is_url:
-            print(f"\nExtracting brand name from {query}\n")
-            with simple_spinner("Extracting company name"):
+            with simple_spinner("Finding Brand Name"):
                 subject_company = extract_subject_company_llm(query, llm_client=llm_client)["inferred_name"]
-            print(f"Inferred company name: {subject_company}\n")
+            print(f"\r\033[KFinding Brand Name... done\nBrand Name Found: {subject_company}\n")
+            brand_name_for_files = subject_company
         else:
             subject_company = query
             print(f"Treating input as search term: '{subject_company}' (skipping brand name extraction)\n")
+
+        json_file, csv_file, log_file = get_output_paths(query, timestamp, results_dir, brand_name=brand_name_for_files)
+        temp_log_file = log_file + ".tmp"
+        setup_logging(log_file, temp_log_file)
 
         with simple_spinner("Waiting for NewsAPI"):
             provider = NewsAPIProvider()

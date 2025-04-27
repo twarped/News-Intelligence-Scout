@@ -67,9 +67,21 @@ def safe_filename(base: str) -> str:
     return ''.join(e for e in base.lower() if e.isalnum() or e in (' ', '_', '-')).replace(' ', '_')
 
 
-def get_output_paths(base_name: str, timestamp: str, results_dir: str = "results"):
-    """Return file paths for JSON, CSV, and log files."""
-    safe_base = safe_filename(base_name)
+def get_output_paths(base_name: str, timestamp: str, results_dir: str = "results", brand_name: str = None):
+    """
+    Return file paths for JSON, CSV, and log files.
+    Uses the brand_name if provided, otherwise falls back to a cleaned version of base_name.
+    """
+    def _clean_name(name):
+        import re
+        name = name.lower()
+        name = re.sub(r'[^a-z0-9]+', '_', name)
+        name = re.sub(r'_+', '_', name)
+        return name.strip('_')
+    if brand_name:
+        safe_base = _clean_name(brand_name)
+    else:
+        safe_base = safe_filename(base_name)
     json_file = os.path.join(results_dir, f"{safe_base}_newsinsight_{timestamp}.json")
     csv_file = os.path.join(results_dir, f"{safe_base}_newsinsight_{timestamp}.csv")
     log_file = os.path.join(results_dir, f"{safe_base}_newsinsight_{timestamp}.logs.txt")

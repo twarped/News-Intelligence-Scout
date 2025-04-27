@@ -131,6 +131,9 @@ def summarize_articles(
 
                         In your summary:
                         - Do NOT mention {TARGET_COMPANY}.
+                        - Do NOT talk about {TARGET_COMPANY}.
+                        - Only summarize the article.
+                        - Do NOT add your own commentary.
                         
                         In your rationale:
                         - Focus on how {TARGET_COMPANY} can take advantage of the situation described in the article to help clients.
@@ -218,12 +221,11 @@ def summarize_articles(
                 except openai.OpenAIError as e:
                     summary = None
                     score = 0
-                    rationale = "LLM unavailable."
                     logging.error(f"OpenAI error during summarization: {e}")
             if summary is None:
                 summary = heuristic_summary(content)
                 score = 0
-                rationale = "LLM unavailable."
+                rationale = "LLM sent bad response, falling back to heuristic summary."
         result = dict(article)
         result["summary"] = summary if summary is not None else ""
         result["score"] = score
