@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.windsurfrules
+coding-challenge.md
+*.pyc
+results/
+.vscode/settings.json
+RedPepper - News Intelligence Scout.code-workspace
+.DS_Store
+.env

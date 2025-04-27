@@ -1,0 +1,35 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Install dependencies",
+        "type": "shell",
+        "command": "${config:python.pythonPath} -m pip install -r requirements.txt",
+        "problemMatcher": [],
+        "group": "build"
+      },
+      {
+        "label": "News Intel Demo",
+        "type": "shell",
+        "command": "${config:python.pythonPath}",
+        "args": ["main.py", "${input:targetUrl}", "--num-articles", "${input:numArticles}"],
+        "problemMatcher": [],
+        "dependsOn": ["Install dependencies"]
+      }
+    ],
+    "inputs": [
+      {
+        "id": "targetUrl",
+        "type": "promptString",
+        "description": "Enter your search term or target company's website URL",
+        "default": "https://snowflake.com"
+      }
+    ,
+      {
+        "id": "numArticles",
+        "type": "promptString",
+        "description": "Number of news articles to retrieve (100 MAX)",
+        "default": "25"
+      }
+    ]
+  }

@@ -1,0 +1,10 @@
+# Requirements for News Intel MVP
+# Python >= 3.11 is required for datetime.UTC (no pytz needed)
+click>=8.1.7
+requests>=2.28.0
+beautifulsoup4>=4.11.0
+nltk>=3.7
+python-dotenv>=1.0.0
+openai>=1.0.0
+langdetect>=1.0.9
+pytest>=7.0.0
