@@ -36,7 +36,7 @@ class ProgressBar:
             with self._lock:
                 percent = int((self.count / (self.total or 1)) * 100) if self.total else 0
                 spinner = self.spinner_cycle[self.idx % len(self.spinner_cycle)]
-                bar = f"[{'#' * (percent // 5):<20}] {percent:3d}% ({self.count}/{self.total if self.total else '?'}) (skipped: {self.skipped})"
+                bar = f"[{'#' * (percent // 5):<20}] {percent:3d}% ({self.count}/{self.total if self.total else '?'}){f' (skipped: {self.skipped})' if self.skipped else ''}"
                 sys.stdout.write(f"\r{bar}  {self.message}... {spinner}")
                 sys.stdout.flush()
                 self.idx += 1

@@ -25,22 +25,14 @@ LLM_MODEL = "gpt-4.1-nano"
 TARGET_COMPANY = "Red Pepper Software"
 
 def build_llm_prompt(subject_company, target_company, rubric, instructions, content):
-    if subject_company:
-        return f"""
-            We are evaluating a news article about '{subject_company}' and the business opportunity it may represent for '{target_company}'.\n
-            Summarize the article in 120 words or less, showing how it's relevant to '{subject_company}'.
-            If the article is not about or relevant to '{subject_company}', say so.\n
-            {instructions}\n
-            Article:\n
-            {content}
-        """
-    else:
-        return f"""
-            Summarize the following news article in 120 words or less, focusing on its business relevance.\n
-            {instructions}\n
-            Article:\n
-            {content}
-        """
+    return f"""
+        We are evaluating a news article about '{subject_company}' and the business opportunity it may represent for '{target_company}'.\n
+        Summarize the article in 120 words or less, showing how it's relevant to '{subject_company}'.
+        If the article is not about or relevant to '{subject_company}', say so.\n
+        {instructions}\n
+        Article:\n
+        {content}
+    """
 
 class ArticleDict(TypedDict, total=False):
     title: str
@@ -145,7 +137,7 @@ def summarize_articles(
                         Respond in valid JSON with these keys:
                         - summary (≤120 words)
                         - score (integer 0–100)
-                        - rationale (1 sentence, ≤20 words, actionable)
+                        - rationale (1 sentence, ≤20 words, specifically actionable with '{subject_company}')
 
                         Rubric:
                         {rubric}

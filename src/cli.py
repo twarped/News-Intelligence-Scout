@@ -11,13 +11,13 @@ import threading
 from datetime import datetime
 from urllib.parse import urlparse
 import logging
-from src.input_handler import extract_subject_company_llm, extract_subject_company
+from src.input_handler import extract_subject_company_llm
 from src.news_provider import NewsAPIProvider
 from src.cli_utils import progress_bar, simple_spinner, handle_partial_results
 from src.news_retriever import extract_article_content
 from src.summarizer import summarize_articles
 from src.output_utils import write_ranked_articles
-from src.output_utils import safe_filename, get_output_paths, setup_logging
+from src.output_utils import get_output_paths, setup_logging
 from src.llm_utils import get_llm_client
 from src.cli_utils import load_and_validate_config
 import requests

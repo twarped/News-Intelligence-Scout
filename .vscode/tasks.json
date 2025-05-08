@@ -4,14 +4,14 @@
       {
         "label": "Install dependencies",
         "type": "shell",
-        "command": "${config:python.pythonPath} -m pip install -r requirements.txt",
+        "command": "${command:python.interpreterPath} -m pip install -r requirements.txt",
         "problemMatcher": [],
         "group": "build"
       },
       {
         "label": "News Intel Demo",
         "type": "shell",
-        "command": "${config:python.pythonPath}",
+        "command": "${command:python.interpreterPath}",
         "args": ["main.py", "${input:targetUrl}", "--num-articles", "${input:numArticles}"],
         "problemMatcher": [],
         "dependsOn": ["Install dependencies"]
