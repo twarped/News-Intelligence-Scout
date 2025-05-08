@@ -68,6 +68,60 @@ To see usage instructions:
 python main.py --help
 ```
 
+## Installation
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/your-username/News-Intelligence-Scout.git
+   cd News-Intelligence-Scout
+   ```
+
+2. Create a virtual environment and install dependencies:
+   ```
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
+
+3. Create a `.env` file with your API keys:
+   ```
+   OPENAI_API_KEY=your_openai_key_here
+   NEWSAPI_KEY=your_newsapi_key_here
+   ```
+
+## Output Format
+
+The tool outputs results in both JSON and CSV formats in the `results/` directory. The output structure contains the following fields:
+
+```json
+{
+  "Rank": 1,                    // Position in ranked results (1 = highest score)
+  "Score": 85,                  // Opportunity score (0-100)
+  "Publication Date": "YYYY-MM-DD",  // Article publication date
+  "Title": "Article Title",     // Original headline
+  "Summary": "...",            // AI-generated summary (≤120 words)
+  "Rationale": "...",          // Reasoning for the opportunity score
+  "URL": "https://..."         // Original article URL
+}
+```
+
+See the rubric section in `src/summarizer.py` for more details on scoring criteria, etc.
+
+## Project Structure
+
+- `main.py`: Entry point for the CLI application
+- `src/`: Core source code
+  - `cli.py`: CLI orchestration logic
+  - `cli_utils.py`: Utility functions for CLI operations
+  - `input_handler.py`: Extracts company names from URLs
+  - `news_provider.py`: API interfaces for news retrieval
+  - `summarizer.py`: Article summarization and scoring logic
+  - `output_utils.py`: File output handling
+  - `progress_bar.py`: CLI progress bar implementation
+  - `simple_spinner.py`: CLI spinner for activity indication
+  - `news_retriever.py`: Content extraction from news articles
+  - `llm_utils.py`: LLM client configuration
+
 ---
 
 - Environment variables `OPENAI_API_KEY` and `NEWSAPI_KEY` must be set for summarization and news retrieval.
