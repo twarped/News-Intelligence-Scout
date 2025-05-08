@@ -93,15 +93,15 @@ python main.py --help
 
 The tool outputs results in both JSON and CSV formats in the `results/` directory. The output structure contains the following fields:
 
-```json
+```javascript
 {
-  "Rank": 1,                    // Position in ranked results (1 = highest score)
-  "Score": 85,                  // Opportunity score (0-100)
+  "Rank": 1,                         // Position in ranked results (1 = highest score)
+  "Score": 85,                       // Opportunity score (0-100)
   "Publication Date": "YYYY-MM-DD",  // Article publication date
-  "Title": "Article Title",     // Original headline
-  "Summary": "...",            // AI-generated summary (≤120 words)
-  "Rationale": "...",          // Reasoning for the opportunity score
-  "URL": "https://..."         // Original article URL
+  "Title": "Article Title",          // Original headline
+  "Summary": "...",                  // AI-generated summary (≤120 words)
+  "Rationale": "...",                // Reasoning for the opportunity score
+  "URL": "https://..."               // Original article URL
 }
 ```
 
