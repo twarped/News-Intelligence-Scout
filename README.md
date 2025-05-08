@@ -2,6 +2,27 @@
 
 A command-line tool to retrieve, summarize, and rank recent news articles for a company or search term.
 
+## Installation
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/twarped/News-Intelligence-Scout.git
+   cd News-Intelligence-Scout
+   ```
+
+2. Create a virtual environment and install dependencies:
+   ```
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
+
+3. Create a `.env` file with your API keys:
+   ```
+   OPENAI_API_KEY=your_openai_key_here
+   NEWSAPI_KEY=your_newsapi_key_here
+   ```
+
 ## Usage
 
 Run the CLI with any of the following use cases:
@@ -67,27 +88,6 @@ To see usage instructions:
 ```
 python main.py --help
 ```
-
-## Installation
-
-1. Clone the repository:
-   ```
-   git clone https://github.com/your-username/News-Intelligence-Scout.git
-   cd News-Intelligence-Scout
-   ```
-
-2. Create a virtual environment and install dependencies:
-   ```
-   python -m venv .venv
-   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-   pip install -r requirements.txt
-   ```
-
-3. Create a `.env` file with your API keys:
-   ```
-   OPENAI_API_KEY=your_openai_key_here
-   NEWSAPI_KEY=your_newsapi_key_here
-   ```
 
 ## Output Format
 
