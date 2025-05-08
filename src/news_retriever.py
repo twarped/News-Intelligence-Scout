@@ -7,6 +7,10 @@ Responsible for fetching and extracting the main content from news article web p
 import logging
 from bs4 import BeautifulSoup
 import re
+try:
+    from langdetect import detect
+except ImportError:
+    detect = None
 
 def extract_article_content(html: str, url: str = None) -> str:
     """
@@ -20,9 +24,18 @@ def extract_article_content(html: str, url: str = None) -> str:
     soup = BeautifulSoup(html, 'html.parser')
     # 1. Try <article>
     article_tag = soup.find('article')
-    if article_tag and article_tag.get_text(strip=True) and len(article_tag.get_text(strip=True)) > 300:
+    if article_tag and article_tag.get_text(strip=True) and len(article_tag.get_text(strip=True)) > 100:
         text = article_tag.get_text(separator='\n', strip=True)
         cleaned = _clean_article_text(text)
+        # language detection: skip non-English content
+        if detect:
+            try:
+                lang = detect(cleaned)
+                if lang != 'en':
+                    logging.info(f"extract_article_content[{url}]: detected non-English language '{lang}', skipping")
+                    return ""
+            except Exception as e:
+                logging.warning(f"extract_article_content[{url}]: language detection failed: {e}")
         logging.info(f"extract_article_content[{url}]: used <article> tag")
         logging.info(f"extract_article_content[{url}]: first 3000 chars: {cleaned[:3000]}")
         return cleaned
@@ -37,6 +50,15 @@ def extract_article_content(html: str, url: str = None) -> str:
     if candidates:
         text = max(candidates, key=len)
         cleaned = _clean_article_text(text)
+        # language detection: skip non-English content
+        if detect:
+            try:
+                lang = detect(cleaned)
+                if lang != 'en':
+                    logging.info(f"extract_article_content[{url}]: detected non-English language '{lang}', skipping")
+                    return ""
+            except Exception as e:
+                logging.warning(f"extract_article_content[{url}]: language detection failed: {e}")
         logging.info(f"extract_article_content[{url}]: used content container")
         logging.info(f"extract_article_content[{url}]: first 3000 chars: {cleaned[:3000]}")
         return cleaned

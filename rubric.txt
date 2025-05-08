@@ -1,0 +1,100 @@
+(1 pt) Mentions sector growth in Red Pepper’s core industries (e.g., SaaS, fintech, healthcare).
+(1 pt) Mentions new market entry by {subject_company}.
+(1 pt) Describes a digital transformation initiative.
+(1 pt) Describes major internal reorganization at {subject_company}.
+(1 pt) Mentions a strategy pivot involving customer experience.
+(1 pt) Reports on a rapid hiring spree in tech or digital.
+(1 pt) Indicates downsizing of legacy platforms.
+(1 pt) Discusses outsourcing or consulting partnerships.
+(1 pt) Reports an operational bottleneck that could require advisory.
+(1 pt) {subject_company} opens new regional office or hub.
+(1 pt) Mentions use or selection of third-party software.
+(1 pt) Discusses multi-cloud or hybrid-cloud challenges.
+(1 pt) {subject_company} announces digital product expansion.
+(1 pt) Industry peers are engaging in modernization efforts.
+(1 pt) Describes cost-cutting pressure in IT or CX functions.
+(1 pt) Announces a CX transformation or redesign initiative.
+(1 pt) Mentions Qualtrics (or similar VoC platform) by name.
+(1 pt) Mentions NPS, CSAT, or other customer metrics.
+(1 pt) Describes need for real-time feedback loops.
+(1 pt) Discusses lagging or declining customer satisfaction.
+(1 pt) Article features a quote from CX leadership.
+(1 pt) Talks about omnichannel strategy or personalization.
+(1 pt) Emphasizes automation of customer feedback workflows.
+(1 pt) Describes a merger requiring unified CX approach.
+(1 pt) {subject_company} cited in a customer complaints issue.
+(1 pt) Announces CX-focused technology investment.
+(1 pt) Mentions intent to use data to improve customer experience.
+(1 pt) Highlights upcoming industry compliance deadlines.
+(1 pt) Discusses regulatory complexity or changes.
+(1 pt) Mentions the need for audit-ready reporting.
+(1 pt) Suggests risk around legacy systems and modernization.
+(1 pt) Describes demand for improved data security or governance.
+(1 pt) Features new ESG reporting requirements.
+(1 pt) Talks about cross-border data restrictions.
+(1 pt) Mentions SOC 2, HIPAA, GDPR, or other regulated standards.
+(1 pt) Describes compliance-mandated technology change.
+(1 pt) Leadership commentary on compliance readiness.
+(1 pt) Announces a merger or acquisition involving {subject_company}.
+(1 pt) Mentions post-merger integration strategy.
+(1 pt) Describes systems rationalization post-M&A.
+(1 pt) New brand rollout or rebranding initiative.
+(1 pt) Announces divestiture or spinout of business unit.
+(1 pt) CX or IT transformation as a result of M&A.
+(1 pt) Acquisition of a CX or tech-focused firm.
+(1 pt) Article links M&A to operational disruption.
+(1 pt) Executive quote about change management or integration.
+(1 pt) PE firm involvement or recapitalization.
+(1 pt) Mentions cloud migration or refactoring.
+(1 pt) Discusses system interoperability issues.
+(1 pt) Indicates monolithic systems or tech debt.
+(1 pt) Focuses on enterprise system upgrade or sunset.
+(1 pt) Talks about automation in IT delivery.
+(1 pt) Mentions microservices adoption.
+(1 pt) Redesign of internal tools or platforms.
+(1 pt) Describes failure in existing IT architecture.
+(1 pt) Highlights problems with reporting systems.
+(1 pt) Discusses replatforming or SaaS transition.
+(1 pt) Refers to devops, agile, or delivery bottlenecks.
+(1 pt) Cites inability to customize off-the-shelf software.
+(1 pt) Mentions internal developer enablement efforts.
+(1 pt) Describes difficulties with vendor lock-in.
+(1 pt) Mentions need for automated report generation.
+(1 pt) Highlights issues with exporting or sharing reports.
+(1 pt) Discusses CX dashboards or PDF output gaps.
+(1 pt) Mentions visualizing VoC or analytics data.
+(1 pt) Talks about client-facing report friction.
+(1 pt) Indicates manual reporting processes still in use.
+(1 pt) Describes fragmented data and report sources.
+(1 pt) Refers to customized reporting or visualization needs.
+(1 pt) New CIO or CDO appointment at {subject_company}.
+(1 pt) CXO publicly endorses tech or CX initiatives.
+(1 pt) Article includes direct quote from digital leadership.
+(1 pt) C-suite mentions internal transformation roadmap.
+(1 pt) Executive describes vendor evaluation or RFP.
+(1 pt) New VP/Director of Customer Experience.
+(1 pt) IT or product team reorg reported.
+(1 pt) Board-level priority placed on transformation.
+(1 pt) CXO discusses pain points in existing stack.
+(1 pt) Mentions high turnover in IT leadership.
+(1 pt) Describes cultural resistance to technology change.
+(1 pt) Article confirms {subject_company} serves B2B customers.
+(1 pt) Mentions B2B CX or account-specific workflows.
+(1 pt) Describes complex sales or onboarding process.
+(1 pt) B2B client feedback mechanisms discussed.
+(1 pt) Highlights need for customized workflows by client type.
+(1 pt) Describes multi-stakeholder decision environments.
+(1 pt) Talks about lifecycle marketing to B2B clients.
+(1 pt) Highlights inconsistent service delivery to B2B segments.
+(1 pt) Suggests opportunity for B2B self-service enablement.
+(1 pt) Article cites industry pressure on B2B CX.
+(1 pt) {subject_company} is the article’s primary subject.
+(1 pt) {subject_company} is mentioned in the headline.
+(1 pt) {subject_company} is quoted or directly interviewed.
+(1 pt) {subject_company} is tagged as a key entity by metadata.
+(1 pt) Majority of the article discusses {subject_company}.
+(1 pt) Article relates to sector or ecosystem {subject_company} operates in.
+(1 pt) {subject_company} is central to a business trend in the article.
+(1 pt) Article cites a known partner, vendor, or competitor of {subject_company}.
+(1 pt) {subject_company} mentioned in relation to a specific initiative.
+(1 pt) {subject_company} mentioned with strategic terminology (e.g., “transformation,” “modernization,” “platform shift”).

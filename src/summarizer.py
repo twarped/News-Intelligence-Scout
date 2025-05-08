@@ -12,6 +12,13 @@ from typing import Generator, Optional, Callable, TypedDict
 from dotenv import load_dotenv
 load_dotenv()
 
+_RUBRIC_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'rubric.txt'))
+try:
+    with open(_RUBRIC_PATH, 'r') as f:
+        RUBRIC_TEXT = f.read()
+except FileNotFoundError:
+    RUBRIC_TEXT = ""
+
 import nltk
 try:
     nltk.data.find('tokenizers/punkt')
@@ -79,44 +86,8 @@ def summarize_articles(
         else:
             if use_llm:
                 try:
-                    # Rubric for LLM scoring: explicitly listed for maintainers and for prompt clarity
-                    rubric = """
-                        Score from 0–100 using this additive rubric:
-
-                        * 40 pts – Relevance to Red Pepper Software’s core services and vision:
-                            - Qualtrics implementation/consulting or customer engagement strategy (10 pts)
-                            - PDF or automated reporting systems (8 pts)
-                            - Engineering services: API integrations, automation, or full-stack projects (8 pts)
-                            - B2B/legacy system migration or modernization efforts (7 pts)
-                            - Cloud-native architecture and cloud cost optimization solutions (7 pts)
-
-                        * 20 pts – Sector urgency or expansion impacting Red Pepper's growth strategy:
-                            - Digital transformation trends driving adoption of Red Pepper's offerings (7 pts)
-                            - Increased IT budgets or expanded timelines, requiring additional Red Pepper services (7 pts)
-                            - Expansion to new geographies/markets, creating demand for Red Pepper’s expertise (6 pts)
-
-                        * 15 pts – Customer experience (CX) initiatives aligned with Red Pepper’s goals:
-                            - Formal CX strategy/platform adoption leveraging Red Pepper's technology (5 pts)
-                            - Adoption of survey, NPS, or feedback tooling that could be enhanced with Red Pepper’s solutions (5 pts)
-                            - Investment in omnichannel or personalization initiatives that can be integrated with Red Pepper’s services (5 pts)
-
-                        * 10 pts – Mergers & acquisitions requiring Red Pepper’s expertise:
-                            - M&A involving enterprise software integrations where Red Pepper’s services are needed (5 pts)
-                            - Spin-offs or divestitures with tech migration or reporting needs that match Red Pepper’s offerings (5 pts)
-
-                        * 10 pts – Leadership changes or strategic shifts aligned with Red Pepper’s vision:
-                            - New CTO/CIO/CDO/CXO with a focus on modernization, digital transformation, or automation (5 pts)
-                            - Strategic organizational shifts that align with Red Pepper’s capabilities (5 pts)
-
-                        * 5 pts – Compliance/regulatory urgency requiring Red Pepper’s technical input:
-                            - Legal or reporting changes with tech implications that require Red Pepper’s systems or services (3 pts)
-                            - Industry deadlines driving digital adoption, where Red Pepper can offer solutions (2 pts)
-
-                        * 10 pts – Emerging technology drivers that Red Pepper can support or integrate:
-                            - Adoption of AI agents, machine learning platforms, or AI-native apps in ways that align with Red Pepper’s offerings (5 pts)
-                            - Investment in identity security, secrets governance, or compliance automation that Red Pepper can support (5 pts)                    """
-
-                    # Clear deterministic instruction to LLM
+                    # Clear deterministic instruction to LLM, and inline subject_company in rubric
+                    rubric_text = RUBRIC_TEXT.replace("{subject_company}", subject_company)
                     instructions = f"""
                         Use the rubric below to assign a deterministic, additive score from 0 to 100.
                         Only assign points for clearly stated signals in the article.
@@ -126,6 +97,7 @@ def summarize_articles(
                         - Do NOT talk about {TARGET_COMPANY}.
                         - Only summarize the article.
                         - Do NOT add your own commentary.
+                        - Is '{subject_company}' in the article
                         
                         In your rationale:
                         - Focus on how {TARGET_COMPANY} can take advantage of the situation described in the article to help clients.
@@ -136,11 +108,11 @@ def summarize_articles(
 
                         Respond in valid JSON with these keys:
                         - summary (≤120 words)
-                        - score (integer 0–100)
-                        - rationale (1 sentence, ≤20 words, specifically actionable with '{subject_company}')
+                        - score (integer)
+                        - rationale (1 sentence, ≤20 words, why the score)
 
                         Rubric:
-                        {rubric}
+                        {rubric_text}
                     """
 
                     # Then for your final prompt:
@@ -239,5 +211,3 @@ def heuristic_summary(content: str) -> str:
         return ' '.join(sent_tokenize(content, language='english')[:3])[:500]
     logging.warning("NLTK not available, falling back to naive string slicing for summary.")
     return content[:500]
-
-
