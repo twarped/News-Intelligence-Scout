@@ -121,6 +121,7 @@ See the rubric section in `rubric.txt` and `src/summarizer.py` for more details 
   - `simple_spinner.py`: CLI spinner for activity indication
   - `news_retriever.py`: Content extraction from news articles
   - `llm_utils.py`: LLM client configuration
+  - `rubric.txt`: Rubric for scoring articles
 
 ---
 
