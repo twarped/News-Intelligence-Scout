@@ -105,7 +105,7 @@ The tool outputs results in both JSON and CSV formats in the `results/` director
 }
 ```
 
-See the rubric section in `src/summarizer.py` for more details on scoring criteria, etc.
+See the rubric section in `rubric.txt` and `src/summarizer.py` for more details on scoring criteria, etc.
 
 ## Project Structure
 
